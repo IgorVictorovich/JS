@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+<script src="jsonTools.js" charset="utf-8"></script>
+</head>
+
+<body>
+<div id="div1"><text id="text1"></text><pre id="pre1"></pre></div>
+<div id="div2"><text id="text2"></text><pre id="pre2"></pre></div>
+<div id="div3"><text id="text3"></text><pre id="pre3"></pre></div>
+<div id="div4"><text id="text4"></text><pre id="pre4"></pre></div>
+<script type="text/javascript">
+var plainObj =
+{
+      "city": "spb",
+      "user": {
+            "name": "misha",
+            "age": 30,
+            "props": {
+                  "enabled": 1,
+                  "guest": 1
+            }
+      },
+      "browser": "lynx"
+};
+
+//parse id's
+var pre1=document.getElementById('pre1');
+var pre2=document.getElementById('pre2');
+var pre3=document.getElementById('pre3');
+var pre4=document.getElementById('pre4');
+var text1=document.getElementById('text1');
+var text2=document.getElementById('text2');
+var text3=document.getElementById('text3');
+var text4=document.getElementById('text4');
+
+text1.innerHTML='show main tree Object<br>'
+//show main tree Object
+pre1.innerHTML=JSON.stringify(plainObj, null, 4);
+
+var newObj = {
+  "newName": "newNameValue",
+  "newName2": "newName2Value"
+};
+text2.innerHTML='show new object, that should be added to tree<br>'
+//show new object, that should be added to tree
+pre2.innerHTML=JSON.stringify(newObj, null, 4);
+
+text3.innerHTML='Final tree Object<br>'
+_jsonTools.writeToTree(plainObj,"newObj",newObj);
+
+pre3.innerHTML=JSON.stringify(plainObj, null, 4);
+
+text4.innerHTML='Final tree Object via function<br>'
+_jsonTools.readTree(plainObj);
+</script>
+
+</body>
+
+</html>
